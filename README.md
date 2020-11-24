@@ -27,7 +27,7 @@
 | hair_parm_id   | integer    | null: false                    |
 | hair_color_id  | integer    | null: false                    |
 | user           | references | null: false, foreign_key: true |
-| shop           | references | null: false, foreign_key: true |
+| shop           | references | foreign_key: true              |
 
 ### Association
 
@@ -47,7 +47,7 @@
 | buillding     | string     |                                |
 | phone_number  | string     | null: false                    |
 | user          | references | null: false, foreign_key: true |
-| hair_style    | references | null: false, foreign_key: true |
+| hair_style    | references | foreign_key: true              |
 
 ### Association
 
