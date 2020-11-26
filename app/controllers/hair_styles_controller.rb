@@ -23,7 +23,7 @@ class HairStylesController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user == @hair_style.user && @hair_style.order == nil
+    redirect_to root_path unless current_user == @hair_style.user
 
   end
 

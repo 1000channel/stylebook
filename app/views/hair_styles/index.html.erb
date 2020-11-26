@@ -122,8 +122,8 @@
 -->
   <%# 商品一覧 %>
   <div class='item-contents'>
-    <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <h2 class='title'>ピックアップヘアスタイル</h2>
+    <%= link_to '新規投稿スタイル', "#", class: "subtitle" %>
     <ul class='item-lists'>
 
       <% if !@hair_styles.empty? %>
@@ -179,7 +179,7 @@
   <%# /商品一覧 %>
 </div>
 <%= link_to(new_hair_style_path, class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>出品する</span>
+  <span class='purchase-btn-text'>投稿する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
 <%= render "shared/footer" %>
