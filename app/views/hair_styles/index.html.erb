@@ -133,19 +133,15 @@
               <div class='item-img-content'>
                 <%= image_tag hair_style.image, class: "item-img" %>
 
-                <% if hair_style.order != nil %>
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
-                <% end %>
+
 <!--
               </div>
               <div class='item-info'>
                 <h3 class='item-name'>
-                  <%= hair_style.name %>
+                  
                 </h3>
                 <div class='item-price'>
-                  <span><%= hair_style.price %>円<br><%= hair_style.shipping_fee_status.name %></span>
+                
                   <div class='star-btn'>
                     <%= image_tag "star.png", class:"star-icon" %>
                     <span class='star-count'>0</span>
