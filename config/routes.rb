@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'hair_styles/index'
+  devise_for :users
+  root to: 'hair_styles#index'
 end
