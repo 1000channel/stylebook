@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_083505) do
+ActiveRecord::Schema.define(version: 2020_11_26_032536) do
+
+  create_table "hair_styles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "gender_id", null: false
+    t.integer "hair_length_id", null: false
+    t.integer "hair_parm_id", null: false
+    t.integer "hair_color_id", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_hair_styles_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
@@ -29,4 +40,5 @@ ActiveRecord::Schema.define(version: 2020_11_24_083505) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "hair_styles", "users"
 end
