@@ -6,8 +6,8 @@ app/assets/stylesheets/items/new.css %>
     <%= link_to image_tag('stylebook-logo-wide.png' , size: '185x90'), "/" %>
   </header>
   <div class="items-sell-main">
-    <h2 class="items-sell-title">ヘアスタイルの情報を入力</h2>
-    <%= form_with(model: @hair_style, local: true) do |f| %>
+    <h2 class="items-sell-title">ショップの情報を入力</h2>
+    <%= form_with(model: @shop, local: true) do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%= render 'shared/error_messages', model: f.object %>
@@ -16,7 +16,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 出品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
-        ヘアスタイル画像
+        ショップ画像
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
@@ -28,52 +28,59 @@ app/assets/stylesheets/items/new.css %>
     </div>
     <%# /出品画像 %>
     <%# 商品名と商品説明 %>
-
-    <%# /商品名と商品説明 %>
-
-    <%# 商品の詳細 %>
-    <div class="items-detail">
-      <div class="weight-bold-text">あなたの詳細</div>
-      <div class="form">
-        <div class="weight-bold-text">
-          性別
+    <%# 配送先の入力 %>
+    <div class='shipping-address-form'>
+      <h1 class='info-input-haedline'>
+        ショップ情報入力
+      </h1>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">ショップ名</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <%= f.text_field :shop_name, class:"input-default", id:"shop-name", placeholder:"例）natty"%>
       </div>
-    </div>
-    <%# /商品の詳細 %>
-
-    <%# 配送について %>
-    <div class="items-detail">
-      <div class="weight-bold-text question-text">
-        <span>ヘアスタイルの詳細</span>
-        <a class="question" href="#">?</a>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">郵便番号</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
       </div>
-      <div class="form">
-              <div class="weight-bold-text">
-          髪の長さ
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hair_length_id, HairLength.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
-
-        <div class="weight-bold-text">
-          パーマの状態
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">市区町村</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hair_parm_id, HairParm.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-        <div class="weight-bold-text">
-          カラー
+        <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">番地</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hair_color_id, HairColor.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
-        <div class="weight-bold-text">
-          ショップ名
+        <%= f.text_field :addresses, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">建物名</label>
+          <span class="form-any">任意</span>
+        </div>
+        <%= f.text_field :building, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">電話番号</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shop_id, Shop.all, :id, :shop_name, {:include_blank => "---"}, {class:"select-box", id:"item-prefecture"}) %>
-
-
+        <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
       </div>
     </div>
     <%# /配送について %>
@@ -128,10 +135,13 @@ app/assets/stylesheets/items/new.css %>
       </p>
     </div> -->
     <%# /注意書き %>
+    
+        <p>　</p><p>　</p>
+
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', hair_style_path(@hair_style.id), class:"back-btn" %>
+      <%=link_to 'もどる', shop_path(@shop.id), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
@@ -145,7 +155,7 @@ app/assets/stylesheets/items/new.css %>
     </ul>
     <%= link_to image_tag('stylebook-logo-wide.png' , size: '185x90'), "/" %>
     <p class="inc">
-      ©︎Furima,Inc.
+      ©︎StyleBook,Inc.
     </p>
   </footer>
 </div>

@@ -1,10 +1,10 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <%= link_to image_tag('stylebook-logo-wide.png' , size: '185x90'), "/" %>
 
   </header>
   <div class="items-sell-main">
-    <h2 class="items-sell-title">商品の情報を入力</h2>
+    <h2 class="items-sell-title">ヘアスタイルの情報を入力</h2>
     <%= form_with model: @hair_style, url: hair_styles_path, local: true do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
@@ -12,7 +12,7 @@
     <%# 出品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
-        出品画像
+        ヘアスタイル画像
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
@@ -42,18 +42,13 @@
 
     <%# 商品の詳細 %>
     <div class="items-detail">
-      <div class="weight-bold-text">商品の詳細</div>
+      <div class="weight-bold-text">あなたの詳細</div>
       <div class="form">
         <div class="weight-bold-text">
-          カテゴリー
+          性別
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:gender_id, Gender.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
-        <div class="weight-bold-text">
-          商品の状態
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hair_length_id, HairLength.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -61,20 +56,31 @@
     <%# 配送について %>
     <div class="items-detail">
       <div class="weight-bold-text question-text">
-        <span>配送について</span>
+        <span>ヘアスタイルの詳細</span>
         <a class="question" href="#">?</a>
       </div>
       <div class="form">
         <div class="weight-bold-text">
-          配送料の負担
+          髪の長さ
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:hair_length_id, HairLength.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <div class="weight-bold-text">
+          パーマの状態
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:hair_parm_id, HairParm.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
-          発送元の地域
+          カラー
           <span class="indispensable">必須</span>
         </div>
         <%= f.collection_select(:hair_color_id, HairColor.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+        <div class="weight-bold-text">
+          ショップ名
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:shop_id, Shop.all, :id, :shop_name, {:include_blank => "---"}, {class:"select-box", id:"item-prefecture"}) %>
+      </div>
     </div>
     <%# /配送について %>
 
@@ -110,7 +116,7 @@
     <%# /販売価格 %>
 
     <%# 注意書き %>
-    <div class="caution">
+<!--    <div class="caution">
       <p class="sentence">
         <a href="#">禁止されている出品、</a>
         <a href="#">行為</a>
@@ -127,10 +133,10 @@
         に同意したことになります。
       </p>
     </div>
-    <%# /注意書き %>
+    <%# /注意書き %> =-->
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "出品する" ,class:"sell-btn" %>
+      <%= f.submit "投稿する" ,class:"sell-btn" %>
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
@@ -140,12 +146,12 @@
   <footer class="items-sell-footer">
     <ul class="menu">
       <li><a href="#">プライバシーポリシー</a></li>
-      <li><a href="#">フリマ利用規約</a></li>
+      <li><a href="#">STYLEBOOK利用規約</a></li>
       <li><a href="#">特定商取引に関する表記</a></li>
     </ul>
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <%= link_to image_tag('stylebook-logo-wide.png' , size: '185x90'), "/" %>
     <p class="inc">
-      ©︎Furima,Inc.
+      ©︎StyleBook,Inc.
     </p>
   </footer>
 </div>

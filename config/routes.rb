@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :hair_styles do
     resources :shop, only: [:index, :create]
   end
-
+  resources :shops
 end
