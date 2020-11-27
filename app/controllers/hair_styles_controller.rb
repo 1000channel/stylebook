@@ -20,6 +20,8 @@ class HairStylesController < ApplicationController
   end
 
   def show
+
+
   end
 
   def edit
@@ -44,11 +46,14 @@ class HairStylesController < ApplicationController
   private
 
   def hair_style_params
-    params.require(:hair_style).permit(:image, :gender_id, :hair_length_id, :hair_parm_id, :hair_color_id).merge(user_id: current_user.id)
+    params.require(:hair_style).permit(:image, :gender_id, :hair_length_id, :hair_parm_id, :hair_color_id, :shop_id).merge(user_id: current_user.id)
   end
 
   def set_hair_style
     @hair_style = HairStyle.find(params[:id])
+    if @hair_style.shop_id != nil
+    @shop = Shop.find([@hair_style.shop_id])
+    end
   end
 
 end

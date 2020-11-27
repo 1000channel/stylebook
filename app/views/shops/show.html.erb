@@ -4,10 +4,10 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      
+      <%= @shop.shop_name %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @hair_style.image ,class:"item-box-img" %>
+      <%= image_tag @shop.image ,class:"item-box-img" %>
 
 
 
@@ -15,13 +15,11 @@
 
 <% if user_signed_in? %>
 
-  <% if current_user == @hair_style.user %>
-    <%= link_to '投稿情報の編集', edit_hair_style_path(@hair_style.id), method: :get, class: "item-red-btn" %>
+  <% if current_user == @shop.user %>
+    <%= link_to 'ショップの編集', edit_shop_path(@shop.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
-    <%= link_to '削除', hair_style_path(@hair_style.id), method: :delete, class:'item-destroy' %>
-      <% if @hair_style.shop_id == nil %>
-      <%= link_to 'ショップの登録', new_shop_path, class:"item-red-btn"%>
-      <% end %>
+    <%= link_to '削除', shop_path(@shop.id), method: :delete, class:'item-destroy' %>
+    
     <% end %>
 <% end %>
 
@@ -29,36 +27,28 @@
     <table class="detail-table">
       <tbody>
         <tr>
-          <th class="detail-item">投稿者</th>
-          <td class="detail-value"><%= @hair_style.user.nickname %></td>
+          <th class="detail-item">郵便番号</th>
+          <td class="detail-value"><%= @shop.postal_code %></td>
         </tr>
         <tr>
-          <th class="detail-item">性別</th>
-          <td class="detail-value"><%= @hair_style.gender.name %></td>
+          <th class="detail-item">都道府県</th>
+          <td class="detail-value"><%= @shop.prefecture.name %></td>
         </tr>
         <tr>
-          <th class="detail-item">髪の長さ</th>
-          <td class="detail-value"><%= @hair_style.hair_length.name %></td>
+          <th class="detail-item">市区町村</th>
+          <td class="detail-value"><%= @shop.city %></td>
         </tr>
         <tr>
-          <th class="detail-item">パーマの状態</th>
-          <td class="detail-value"><%= @hair_style.hair_parm.name %></td>
+          <th class="detail-item">番地</th>
+          <td class="detail-value"><%= @shop.addresses %></td>
         </tr>
         <tr>
-          <th class="detail-item">カラー</th>
-          <td class="detail-value"><%= @hair_style.hair_color.name %></td>
+          <th class="detail-item">建物名</th>
+          <td class="detail-value"><%= @shop.building %></td>
         </tr>
         <tr>
-          <th class="detail-item">紹介コード</th>
-          <td class="detail-value"><%= @hair_style.user.referral_code %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">ショップ名</th>
-          <td class="detail-value">
-          <% if @hair_style.shop_id != nil %>
-          <%= link_to "#{@shop[0]['shop_name']}", shop_path(@hair_style.shop_id) %>
-          <% end %>
-          </td>
+          <th class="detail-item">電話番号</th>
+          <td class="detail-value"><%= @shop.phone_number %></td>
         </tr>
       </tbody>
     </table>
